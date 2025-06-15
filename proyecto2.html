@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximo Trufelman - Portfolio</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+      <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="encabezado">
+        <nav class="navegacion">
+            <a href="index.html" class="logotipo">Mi Portfolio.</a>
+            <ul class="menu-navegacion">
+                <li><a href="index.html" class="enlace-nav activo">Inicio</a></li>
+                <li><a href="sobre-mi.html" class="enlace-nav">Sobre mí</a></li>
+                <li><a href="proyectos.html" class="enlace-nav">Proyectos</a></li>
+                <li><a href="habilidades.html" class="enlace-nav">Habilidades</a></li>
+                <li><a href="contacto.html" class="enlace-nav">Contacto</a></li>
+                <li><a href="https://maxitrufel.github.io/Linktree_DesarrolloWeb/" class="enlace-nav">Volver a Linktree</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <!-- Contenido principal -->
+    <div class="contenedor-estrecho">
+        <div class="detalle-proyecto">
+            <h1 class="titulo-proyecto">🎵 Botonera de Sonidos</h1>
+            
+            <div class="meta-proyecto">
+                <span class="item-meta">Aplicación Musical Interactiva</span>
+            </div>
+            
+            <div class="descripcion-proyecto">
+                <p>Una botonera de sonidos simple e intuitiva que permite reproducir diferentes efectos sonoros con un solo clic. Incluye control de volumen y visualizador de audio.</p>
+            </div>
+
+            <!-- Botonera funcional -->
+            <div class="botonera-contenedor">
+                <div class="botones-sonidos" id="botones-sonidos">
+                    <!-- Los botones se generan dinámicamente -->
+                </div>
+
+            </div>
+
+            <h3 style="font-size: 1.5rem; font-weight: 700; margin: 2rem 0 1.5rem; color: #0f172a;">Características principales</h3>
+            <ul class="lista-caracteristicas">
+                <li>Sonidos organizados en una interfaz simple</li>
+            </ul>
+
+            <h3 style="font-size: 1.5rem; font-weight: 700; margin: 2rem 0 1.5rem; color: #0f172a;">Tecnologías utilizadas</h3>
+            <div class="contenedor-etiquetas">
+                <span class="etiqueta-tech">JavaScript ES6</span>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <a href="proyectos.html" class="boton-volver">
+                    ← Volver a Proyectos
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="pie-pagina">
+        <div class="enlaces-sociales">
+            <a href="https://www.linkedin.com/in/m%C3%A1ximo-trufelman-106147211/" class="enlace-social" target="_blank">LinkedIn</a>
+            <a href="https://github.com/maxiTrufel" class="enlace-social" target="_blank">GitHub</a>
+        </div>
+        <p>&copy; 2025 Maximo Trufelman. Todos los derechos reservados.</p>
+        <p>Desarrollado con dedicación y café ☕</p>
+    </footer>
+
+    <script src="./js/sonidos.js"></script>
+
+</body>
+</html>
