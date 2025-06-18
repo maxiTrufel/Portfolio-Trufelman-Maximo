@@ -29,7 +29,7 @@ body {
   padding: 1.5rem 2rem;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 800px) {
   .navegacion {
     display: flex;
     justify-content: space-between;
@@ -44,6 +44,14 @@ body {
   text-decoration: none;
   letter-spacing: -0.025em;
   display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+}
+.logotipo img {
+  height: 50px;
+  width: 50px;
 }
 
 .menu-navegacion {
@@ -53,7 +61,7 @@ body {
   gap: 0;
   flex-wrap: wrap;
 }
-@media (min-width: 700px) {
+@media (min-width: 800px) {
   .menu-navegacion {
     margin-top: 0;
     justify-content: space-between;
@@ -168,7 +176,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #ffffff;
+  background: #e0d9ff;
   color: #0f172a;
   padding: 1rem 2rem;
   border-radius: 12px;
@@ -474,7 +482,7 @@ body {
 
 /* Detalle de proyecto */
 .detalle-proyecto {
-  background: #ffffff;
+  background: #efefff;
   border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 3rem;
@@ -583,7 +591,7 @@ body {
 /* Proyecto 1 */
 .calculadora-contenedor {
   max-width: 400px;
-  margin: 2rem auto;
+  margin: 2rem  0;
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 20px;
@@ -949,20 +957,22 @@ body {
 
 .boton-cerrar {
   position: absolute;
-  top: -50px;
-  right: 0;
+  top: -20px;
+  right: 20px;
   background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: none;
+color: black;  border: none;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background 0.2s ease;
+  border: 2px solid purple;
+  background-color: white;
+
 }
 
 .boton-cerrar:hover {
@@ -1191,54 +1201,61 @@ body {
 }
 
 /* Contacto */
-        .mensaje-estado {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            font-weight: 500;
-            display: none;
-        }
-        
-        .mensaje-exito {
-            background: #dcfce7;
-            color: #166534;
-            border: 1px solid #bbf7d0;
-        }
-        
-        .mensaje-error {
-            background: #fef2f2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
-        }
-        
-        .campo-error {
-            border-color: #dc2626 !important;
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
-        }
-        
-        .texto-error {
-            color: #dc2626;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-        
-        .boton-cargando {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-        
-        .spinner-carga {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid #ffffff;
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 0.5rem;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+.mensaje-estado {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  display: none;
+}
+
+.mensaje-exito {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.mensaje-error {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.campo-error {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+}
+
+.texto-error {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.boton-cargando {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner-carga {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.titulo-principal-2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 2rem;
+}
