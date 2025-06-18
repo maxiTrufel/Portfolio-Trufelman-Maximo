@@ -1,9 +1,9 @@
 // Inicializar EmailJS
 (function () {
-  emailjs.init("YOUR_PUBLIC_KEY"); // Reemplazar con tu clave pública de EmailJS
+  emailjs.init("o9d7g6jVI1wUO2Dzd");
 })();
 
-// Referencias a elementos del DOM
+// Referencias al DOM
 const formulario = document.getElementById("formulario-contacto");
 const botonEnviar = document.getElementById("boton-enviar");
 const textoBoton = document.getElementById("texto-boton");
@@ -12,6 +12,7 @@ const mensajeEstado = document.getElementById("mensaje-estado");
 // Campos del formulario
 const campos = {
   nombre: document.getElementById("nombre"),
+  email: document.getElementById("email"),
   asunto: document.getElementById("asunto"),
   mensaje: document.getElementById("mensaje"),
 };
@@ -19,26 +20,25 @@ const campos = {
 // Elementos de error
 const errores = {
   nombre: document.getElementById("error-nombre"),
+  email: document.getElementById("error-email"),
   asunto: document.getElementById("error-asunto"),
   mensaje: document.getElementById("error-mensaje"),
 };
 
-// Función para mostrar mensaje
+// Mostrar mensaje
 function mostrarMensaje(texto, tipo) {
   mensajeEstado.textContent = texto;
   mensajeEstado.className = `mensaje-estado mensaje-${tipo}`;
   mensajeEstado.style.display = "block";
-
-  // Scroll hacia el mensaje
   mensajeEstado.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-// Función para ocultar mensaje
+// Ocultar mensaje
 function ocultarMensaje() {
   mensajeEstado.style.display = "none";
 }
 
-// Función para mostrar error en campo
+// Mostrar error en campo
 function mostrarErrorCampo(campo, mostrar = true) {
   if (mostrar) {
     campos[campo].classList.add("campo-error");
@@ -49,38 +49,31 @@ function mostrarErrorCampo(campo, mostrar = true) {
   }
 }
 
-// Función para validar formulario
+// Validar formulario
 function validarFormulario() {
   let esValido = true;
 
-  // Validar nombre
-  if (!campos.nombre.value.trim()) {
-    mostrarErrorCampo("nombre", true);
-    esValido = false;
-  } else {
-    mostrarErrorCampo("nombre", false);
-  }
+  // Validar cada campo
+  Object.keys(campos).forEach((campo) => {
+    if (!campos[campo].value.trim()) {
+      mostrarErrorCampo(campo, true);
+      esValido = false;
+    } else {
+      mostrarErrorCampo(campo, false);
+    }
+  });
 
-  // Validar asunto
-  if (!campos.asunto.value.trim()) {
-    mostrarErrorCampo("asunto", true);
+  // Validación adicional para email válido
+  const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(campos.email.value);
+  if (!emailValido) {
+    mostrarErrorCampo("email", true);
     esValido = false;
-  } else {
-    mostrarErrorCampo("asunto", false);
-  }
-
-  // Validar mensaje
-  if (!campos.mensaje.value.trim()) {
-    mostrarErrorCampo("mensaje", true);
-    esValido = false;
-  } else {
-    mostrarErrorCampo("mensaje", false);
   }
 
   return esValido;
 }
 
-// Función para mostrar estado de carga
+// Estado de carga
 function mostrarCarga(cargando) {
   if (cargando) {
     botonEnviar.classList.add("boton-cargando");
@@ -93,7 +86,7 @@ function mostrarCarga(cargando) {
   }
 }
 
-// Función para limpiar formulario
+// Limpiar formulario
 function limpiarFormulario() {
   formulario.reset();
   Object.keys(campos).forEach((campo) => {
@@ -101,21 +94,19 @@ function limpiarFormulario() {
   });
 }
 
-// Función para enviar email
+// Enviar email con EmailJS
 function enviarEmail(datos) {
-  // Parámetros para EmailJS
-  const parametros = {
-    from_name: datos.nombre,
-    subject: datos.asunto,
-    message: datos.mensaje,
-    to_email: "maria.garcia@email.com", // Tu email
-  };
 
-  // Enviar email usando EmailJS
-  return emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", parametros);
+  const parametros = {
+    nombre: datos.nombre,
+    email: datos.email,
+    sujeto: datos.asunto,
+    mensaje: datos.mensaje,
+  };
+  return emailjs.send("service_fngkzgm", "template_eoaggtb", parametros);
 }
 
-// Event listeners para validación en tiempo real
+// Validación en tiempo real
 Object.keys(campos).forEach((campo) => {
   campos[campo].addEventListener("blur", function () {
     if (this.value.trim()) {
@@ -130,66 +121,40 @@ Object.keys(campos).forEach((campo) => {
   });
 });
 
-// Manejar envío del formulario
+// Manejo de envío
 formulario.addEventListener("submit", function (e) {
   e.preventDefault();
-
-  // Ocultar mensaje anterior
   ocultarMensaje();
 
-  // Validar formulario
   if (!validarFormulario()) {
     mostrarMensaje("Por favor completa todos los campos requeridos.", "error");
     return;
   }
 
-  // Mostrar estado de carga
   mostrarCarga(true);
 
-  // Recopilar datos del formulario
   const datos = {
     nombre: campos.nombre.value.trim(),
+    email: campos.email.value.trim(),
     asunto: campos.asunto.value.trim(),
     mensaje: campos.mensaje.value.trim(),
   };
 
-  // Simular envío de email (reemplazar con EmailJS real)
-  setTimeout(() => {
-    // Simular éxito (en producción, usar EmailJS)
-    mostrarCarga(false);
-    mostrarMensaje(
-      "¡Mensaje enviado correctamente! Te responderé pronto.",
-      "exito"
-    );
-    limpiarFormulario();
-
-    // En producción, usar esto:
-    /*
-                enviarEmail(datos)
-                    .then(function(response) {
-                        mostrarCarga(false);
-                        mostrarMensaje('¡Mensaje enviado correctamente! Te responderé pronto.', 'exito');
-                        limpiarFormulario();
-                    })
-                    .catch(function(error) {
-                        mostrarCarga(false);
-                        mostrarMensaje('Error al enviar el mensaje. Por favor intenta nuevamente.', 'error');
-                        console.error('Error:', error);
-                    });
-                */
-  }, 2000);
+  enviarEmail(datos)
+    .then(() => {
+      mostrarCarga(false);
+      mostrarMensaje(
+        "¡Mensaje enviado correctamente! Te responderé pronto.",
+        "exito"
+      );
+      limpiarFormulario();
+    })
+    .catch((error) => {
+      mostrarCarga(false);
+      mostrarMensaje(
+        "Error al enviar el mensaje. Por favor intenta nuevamente.",
+        "error"
+      );
+      console.error("Error:", error);
+    });
 });
-
-// Configuración de EmailJS (comentado para demo)
-/*
-        Para usar EmailJS en producción:
-        
-        1. Regístrate en https://www.emailjs.com/
-        2. Crea un servicio de email
-        3. Crea una plantilla de email
-        4. Reemplaza:
-           - YOUR_PUBLIC_KEY con tu clave pública
-           - YOUR_SERVICE_ID con tu ID de servicio
-           - YOUR_TEMPLATE_ID con tu ID de plantilla
-        5. Descomenta la función enviarEmail() en el evento submit
-        */

@@ -58,7 +58,6 @@
 
           <!-- Mensaje de estado -->
           <div id="mensaje-estado" class="mensaje-estado"></div>
-
           <form id="formulario-contacto">
             <div class="grupo-campo">
               <label for="nombre" class="etiqueta-campo"
@@ -73,6 +72,23 @@
               />
               <div id="error-nombre" class="texto-error">
                 Por favor ingresa tu nombre
+              </div>
+            </div>
+
+            <div class="grupo-campo">
+              <label for="email" class="etiqueta-campo"
+                >Correo electrónico *</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="campo-entrada"
+                required
+                placeholder="Ej: nombre@correo.com"
+              />
+              <div id="error-email" class="texto-error">
+                Por favor ingresa un correo válido
               </div>
             </div>
 
